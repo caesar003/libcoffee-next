@@ -1,27 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useAtomValue } from "jotai";
+// import { isUserLoginAtom } from "@/store/auth";
 import ProductList from "@/components/ProductList";
 import instance from "@/services/instance";
-import {Product as ProductInterface} from "@/utils/types";
+import { Product as ProductInterface } from "@/utils/types";
 
-export default function Product(){
+interface ProductProps {
+  products: ProductInterface[];
+}
 
-  const [products, setProducts] = useState<ProductInterface[]>([]);
+export default function Product({ products }: ProductProps) {
+  // const userCredential = useAtomValue(isUserLoginAtom);
 
-  const getProducts = async () => {
-    try {
-      const { data } = await instance.get("/api/products");
-      setProducts(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // console.log({ userCredential });
 
-  useEffect(() => {
-    getProducts();
-  }, []);
   return (
     <main>
       <ProductList title="Our Products" products={products} />
     </main>
   );
+}
+
+export async function getServerSideProps() {
+  try {
+    const { data: products } = await instance.get("/api/products");
+
+    return {
+      props: {
+        products,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching products:", error);
+
+    return {
+      props: {
+        products: [],
+      },
+    };
+  }
 }

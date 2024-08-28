@@ -14,9 +14,6 @@ export default function CartButton({
     setIsOpen(!isOpen);
   };
 
-
-
-
   return (
     <div className="relative">
       <button

@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 
 import CartButton from "@/components/CartButton";
-// import logo from "@/public/logo-transparent.png"; // Ensure this is correct or place your logo in public
 
 import { LinkInterface } from "@/utils/types";
 

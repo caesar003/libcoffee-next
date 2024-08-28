@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-// import { Product as ProductInterface } from "@utils/types";
-
 
 export interface ProductInterface {
   product_id: number;
@@ -34,7 +32,7 @@ export default function Hero({
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? products.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? products.length - 1 : prevIndex - 1
     );
   };
 
@@ -45,7 +43,6 @@ export default function Hero({
   if (products.length === 0) {
     return <p>No products available.</p>;
   }
-
 
   return (
     <section className="p-4">
